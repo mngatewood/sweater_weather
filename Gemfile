@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'webmock'
+  gem 'vcr'
   gem 'factory_bot_rails'
 end
 
