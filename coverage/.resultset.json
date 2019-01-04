@@ -67,31 +67,49 @@
         null,
         null
       ],
-      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/services/dark_sky_service.rb": [
+      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/models/user.rb": [
         1,
-        null,
-        1,
-        6,
-        6,
-        null,
-        null,
-        1,
-        6,
-        6,
-        null,
         null,
         1,
         null,
         1,
         null,
         1,
-        6,
-        6,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/controllers/api/v1/users_controller.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
         null,
         null,
         1,
-        6,
+        2,
         null,
+        null
+      ],
+      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/controllers/application_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/serializers/user_serializer.rb": [
+        1,
+        1,
+        null,
+        3,
+        null,
+        1,
         null,
         null
       ],
@@ -102,10 +120,6 @@
         2,
         2,
         null,
-        null
-      ],
-      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/controllers/application_controller.rb": [
-        1,
         null
       ],
       "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/serializers/forecast_serializer.rb": [
@@ -165,12 +179,35 @@
         null,
         null
       ],
-      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/models/application_record.rb": [
-        0,
-        0,
-        0
+      "/Users/michaelgatewood/Documents/___Turing/BE/Mod3/sweater_weather/app/services/dark_sky_service.rb": [
+        1,
+        null,
+        1,
+        6,
+        6,
+        null,
+        null,
+        1,
+        6,
+        6,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        6,
+        6,
+        null,
+        null,
+        1,
+        6,
+        null,
+        null,
+        null
       ]
     },
-    "timestamp": 1546554179
+    "timestamp": 1546560681
   }
 }
