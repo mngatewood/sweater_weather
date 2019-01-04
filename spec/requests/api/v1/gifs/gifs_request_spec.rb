@@ -25,7 +25,7 @@ describe 'gifs API' do
   end
 
   it 'should return a copyright year' do
-    expect(@data[:data][:copyright]).to eq('2019')
+    expect(@data[:data][:attributes][:copyright]).to eq('2019')
   end
 
 end
