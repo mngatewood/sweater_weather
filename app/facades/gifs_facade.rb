@@ -21,7 +21,7 @@ class GifsFacade
   end
 
   def copyright
-    Date.today.year
+    Date.today.year.to_s
   end
 
 private
