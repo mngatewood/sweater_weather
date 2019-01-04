@@ -1,4 +1,4 @@
-class GifsFacade
+class GifsForecast
 
   attr_reader :location
 
