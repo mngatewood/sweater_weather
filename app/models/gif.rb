@@ -9,7 +9,7 @@ class Gif
 
   def url
     data = giphy_service.gif_fetch
-    data[:data].first[:url]
+    data[:data].sample[:url]
   end
 
 private
