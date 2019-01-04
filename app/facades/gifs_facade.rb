@@ -9,7 +9,7 @@ class GifsFacade
   def daily_forecasts
     daily_forecast = []
     daily_weather_forecast.each do |day|
-      gif = Gif.new(day.summary, day.time)
+      gif = Gif.new(day[:summary], day[:time])
       forecast = { 
                    time: gif.time,
                    summary: gif.summary,
@@ -17,7 +17,7 @@ class GifsFacade
                   }
       daily_forecast << forecast
     end
-    return daily
+    return daily_forecast
   end
 
   def copyright
