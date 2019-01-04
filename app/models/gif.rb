@@ -8,12 +8,23 @@ class Gif
   end
 
   def data
-    response = Faraday.get("http://api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}&q=#{@query}")
-    data = JSON.parse(response.body, symbolize_name: true)
+    url = "search?api_key=#{ENV['GIPHY_API_KEY']}&q=#{summary}"
+    data = get_json(url)
   end
 
   def url
     data[:data].first[:url]
+  end
+
+private
+
+  def get_json(url)
+    response = conn.get(url)
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def conn
+    Faraday.new(url: "http://api.giphy.com/v1/gifs/")
   end
 
 end
