@@ -4,12 +4,12 @@ describe 'User API' do
   describe 'user creates an account' do
 
     before(:each) do
-      params = {
+      @params = {
                 "email": "whatever@example.com",
                 "password": "password",
                 "password_confirmation": "password"
                }
-      post '/api/v1/users', params: params
+      post '/api/v1/users', params: @params
       @result = JSON.parse(response.body, symbolize_names: true)
     end
 
@@ -21,8 +21,39 @@ describe 'User API' do
 
     it 'should return a status code and api key' do
       expect(response).to be_successful
-      expect(@result[:data][:attributes][:status]).to eq(201)
+      expect(response.status).to eq(201)
       expect(@result[:data][:attributes]).to have_key(:api_key)
+    end
+
+    describe 'email already exists' do
+
+      before(:each) do
+        post '/api/v1/users', params: @params
+        @result = JSON.parse(response.body, symbolize_names: true)
+      end
+
+      it 'should throw an error' do
+        expect(response.status).to eq(422)
+        expect(@result[:error]).to eq("Unable to create user.")
+      end
+    end
+
+    describe 'passwords do not match' do
+
+      before(:each) do
+        params = {
+                  "email": "whomever@example.com",
+                  "password": "password",
+                  "password_confirmation": "what"
+                  }
+        post '/api/v1/users', params: params
+        @result = JSON.parse(response.body, symbolize_names: true)
+      end
+
+      it 'should throw an error' do
+        expect(response.status).to eq(422)
+        expect(@result[:error]).to eq("Unable to create user.")
+      end
     end
 
   end
