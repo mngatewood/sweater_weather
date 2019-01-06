@@ -17,13 +17,13 @@ describe 'Favorites API' do
       end
 
       it 'creates a favorite' do
+        expect(response).to be_successful
         expect(@user.favorites.first.location).to eq("Denver, CO")
       end
 
-      it 'returns the favorite and api key' do
+      it 'returns the favorite' do
         expect(@data[:data][:id]).to eq(@user.favorites.first.id.to_s)
         expect(@data[:data][:attributes][:location]).to eq("Denver, CO")
-        expect(@data[:data][:attributes][:api_key]).to eq(@user.api_key)
       end
     end
 
@@ -60,10 +60,12 @@ describe 'Favorites API' do
       end
 
       it 'does not create a favorite' do
+        expect(response).to_not be_successful
         expect(@user.favorites).to eq([])
       end
 
       it 'returns an error' do
+        expect(response.status).to eq(401)
         expect(@data[:error]).to eq("Missing required parameters.")
       end
     end
@@ -80,10 +82,12 @@ describe 'Favorites API' do
       end
 
       it 'does not create a favorite' do
+        expect(response).to_not be_successful
         expect(@user.favorites).to eq([])
       end
 
       it 'returns an error' do
+        expect(response.status).to eq(401)
         expect(@data[:error]).to eq("Missing required parameters.")
       end
     end
