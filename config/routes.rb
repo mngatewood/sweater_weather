@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get 'gifs', to: 'gifs#show'
         post 'sessions', to: 'sessions#create'
         post 'favorites', to: 'favorites#create'
+        get 'favorites', to: 'favorites#index'
     end
   end
 
