@@ -1,10 +1,12 @@
 require 'rails_helper'
+require './spec/fixtures/stubs'
 
 describe Gif, type: :model do
+  include Stubs
 
   before(:each) do
-    stub_request(:get, "http://api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}&q=Clear throughout the day.").
-      to_return(body: File.read("./spec/fixtures/gif.json"))
+    forecast_gifs
+
     @gif = Gif.new("Clear throughout the day.", 1546585200)
   end
 

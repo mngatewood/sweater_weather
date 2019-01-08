@@ -1,12 +1,15 @@
 require 'rails_helper'
+require './spec/fixtures/stubs'
 
 describe 'Favorites API' do
-
+  include Stubs
   describe 'Add a favorite location (POST)' do
-
     describe 'with a valid api key' do
 
       before(:each) do
+        geocode_all
+        forecast_all
+
         @user = create(:user)
         params = {
                     "location": "Denver, CO",
