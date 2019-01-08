@@ -2,6 +2,7 @@ class FavoritesSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :user_id,
-             :location
+             :location,
+             :current_weather
 
 end

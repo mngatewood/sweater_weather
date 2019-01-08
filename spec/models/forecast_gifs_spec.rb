@@ -1,12 +1,13 @@
 require 'rails_helper'
+require './spec/fixtures/stubs'
 
 describe ForecastGifs, type: :model do
+  include Stubs
   describe 'Methods' do
+
     before(:each) do
-      stub_request(:get, "https://maps.googleapis.com/maps/api/geocode/json?address=denver+co&key=#{ENV['GOOGLE_API_KEY']}").
-        to_return(body: File.read("./spec/fixtures/geocode.json"))
-      stub_request(:get, "https://api.darksky.net/forecast/#{ENV['DARK_SKY_API_KEY']}/39.7507834,-104.9964355").
-        to_return(body: File.read("./spec/fixtures/forecast.json"))
+      geocode_denver
+      forecast_denver
       @forecast_gifs = ForecastGifs.new("Denver,CO")
     end
 

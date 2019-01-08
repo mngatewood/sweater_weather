@@ -1,10 +1,15 @@
 require 'rails_helper'
+require './spec/fixtures/stubs'
 
 describe 'Favorites API' do
+  include Stubs
   describe 'List favorite locations (GET)' do
     describe 'with a valid api key' do
 
       before(:each) do
+        geocode_all
+        forecast_all
+
         @user = create(:user)
         @location_1 = @user.favorites.create(location: "Denver, CO")
         @location_2 = @user.favorites.create(location: "Las Vegas, NV")
@@ -20,8 +25,11 @@ describe 'Favorites API' do
         expect(response).to be_successful
         expect(@data[:data].count).to eq(3)
         expect(@data[:data][0][:attributes][:location]).to eq("Denver, CO")
+        expect(@data[:data][0][:attributes][:current_weather]).to eq("Clear")
         expect(@data[:data][1][:attributes][:location]).to eq("Las Vegas, NV")
+        expect(@data[:data][1][:attributes][:current_weather]).to eq("Partly Cloudy")
         expect(@data[:data][2][:attributes][:location]).to eq("Phoenix, AZ")
+        expect(@data[:data][2][:attributes][:current_weather]).to eq("Clear")
       end
     end
 
