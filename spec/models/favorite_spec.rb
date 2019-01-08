@@ -21,7 +21,9 @@ describe Favorite, type: :model do
       user = create(:user)
       favorite = user.favorites.create(location: "Denver, CO")
 
-      expect(favorite.current_weather).to eq("Clear")
+      expect(favorite.current_weather).to be_a(Hash)
+      expect(favorite.current_weather[:summary]).to eq("Clear")
+      expect(favorite.current_weather[:temperature]).to eq(23)
     end
 
   end

@@ -25,11 +25,14 @@ describe 'Favorites API' do
         expect(response).to be_successful
         expect(@data[:data].count).to eq(3)
         expect(@data[:data][0][:attributes][:location]).to eq("Denver, CO")
-        expect(@data[:data][0][:attributes][:current_weather]).to eq("Clear")
+        expect(@data[:data][0][:attributes][:current_weather][:summary]).to eq("Clear")
+        expect(@data[:data][0][:attributes][:current_weather][:temperature]).to eq(23)
         expect(@data[:data][1][:attributes][:location]).to eq("Las Vegas, NV")
-        expect(@data[:data][1][:attributes][:current_weather]).to eq("Partly Cloudy")
+        expect(@data[:data][1][:attributes][:current_weather][:summary]).to eq("Partly Cloudy")
+        expect(@data[:data][1][:attributes][:current_weather][:temperature]).to eq(61.11)
         expect(@data[:data][2][:attributes][:location]).to eq("Phoenix, AZ")
-        expect(@data[:data][2][:attributes][:current_weather]).to eq("Clear")
+        expect(@data[:data][2][:attributes][:current_weather][:summary]).to eq("Clear")
+        expect(@data[:data][2][:attributes][:current_weather][:temperature]).to eq(71.26)
       end
     end
 
