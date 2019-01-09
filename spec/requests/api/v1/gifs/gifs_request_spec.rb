@@ -7,7 +7,7 @@ describe 'gifs API' do
   before(:each) do
     geocode_denver
     forecast_denver
-    VCR.use_cassette('giphy_request', record: :all) do
+    VCR.use_cassette('giphy_request', record: :once) do
       get "/api/v1/gifs?location=denver,co"
     end
     @data = JSON.parse(response.body, symbolize_names: true)

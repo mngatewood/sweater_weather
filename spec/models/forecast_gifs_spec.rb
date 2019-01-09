@@ -12,7 +12,7 @@ describe ForecastGifs, type: :model do
     end
 
     it 'should return five daily forecasts' do
-      VCR.use_cassette('giphy_request', record: :all) do
+      VCR.use_cassette('giphy_request', record: :once) do
         expect(@forecast_gifs.daily_forecasts.count).to eq(5)
         expect(@forecast_gifs.daily_forecasts.first[:time]).to eq(1546412400)
         expect(@forecast_gifs.daily_forecasts.first[:summary]).to eq("Clear throughout the day.")
@@ -24,7 +24,7 @@ describe ForecastGifs, type: :model do
     end
 
     it 'should return a copyright year' do
-      VCR.use_cassette('giphy_request', record: :all) do
+      VCR.use_cassette('giphy_request', record: :once) do
         expect(@forecast_gifs.copyright).to eq('2019')
       end
     end
