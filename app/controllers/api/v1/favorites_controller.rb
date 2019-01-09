@@ -33,4 +33,10 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
+private
+
+  def current_user
+    User.find_by(api_key: params[:api_key]) if params[:api_key]
+  end
+
 end
