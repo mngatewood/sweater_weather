@@ -12,8 +12,10 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def index
-    if current_user
+    if current_user && favorites?
       render json: FavoritesSerializer.new(current_user.favorites.active), status: 200
+    elsif current_user
+      render json: { :error => "No favorites to display." }, status: 204
     else
       render json: { :error => "Invalid credentials." }, status: 401
     end
@@ -23,7 +25,8 @@ class Api::V1::FavoritesController < ApplicationController
     favorite = Favorite.find_by(id: params[:id])
     if current_user && favorite
       favorite.update_attributes(active: false)
-      render json: FavoritesSerializer.new(current_user.favorites.active), status: 200
+      render json: FavoritesSerializer.new(current_user.favorites.active), status: 200 if favorites?
+      render json: { :error => "No favorites to display." }, status: 204 if !favorites?
     elsif favorite && params[:api_key] #invalid user
       render json: { :error => "Invalid credentials." }, status: 401
     elsif current_user && params[:id] #invalid favorite
@@ -37,6 +40,10 @@ private
 
   def current_user
     User.find_by(api_key: params[:api_key]) if params[:api_key]
+  end
+
+  def favorites?
+    current_user.favorites.active.present?
   end
 
 end
