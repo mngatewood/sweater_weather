@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         post 'sessions', to: 'sessions#create'
         post 'favorites', to: 'favorites#create'
         get 'favorites', to: 'favorites#index'
+        delete 'favorites', to: 'favorites#destroy'
     end
   end
 
