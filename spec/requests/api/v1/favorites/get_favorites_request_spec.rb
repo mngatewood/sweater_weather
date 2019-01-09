@@ -74,19 +74,18 @@ describe 'Favorites API' do
       end
     end
 
-    xdescribe 'no favorites to display' do
+    describe 'no favorites to display' do
       before(:each) do
         @user = create(:user)
         params = {
                     "api_key": @user.api_key
                   }
         get "/api/v1/favorites", params: params
-        @data = JSON.parse(response.body, symbolize_names: true)
       end
 
       it 'returns a 204 status code' do
         expect(response.status).to eq(204)
-        expect(@data[:error]).to eq("No favorites to display.")
+        expect(response.body).to eq("")
       end
     end
   end
