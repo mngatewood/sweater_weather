@@ -132,5 +132,24 @@ describe 'Favorites API' do
         expect(@data[:error]).to eq("Missing required parameters.")
       end
     end
+
+    describe 'delete last remaining favorite' do
+
+      before(:each) do
+        Favorite.delete(@favorite_1.id)
+        Favorite.delete(@favorite_2.id)
+        params = {
+                    "id": @favorite_3.id,
+                    "api_key": @user.api_key
+                  }
+        delete "/api/v1/favorites", params: params
+      end
+
+      it 'returns a 204 status code' do
+        expect(response.status).to eq(204)
+        expect(response.body).to eq("")
+      end
+
+    end
   end
 end
