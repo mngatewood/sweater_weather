@@ -6,7 +6,7 @@ run Rails.application
 
 require 'rack/cors'
 
-Rack::Cors do
+use Rack::Cors do
   allow do
     origins '*'
  
