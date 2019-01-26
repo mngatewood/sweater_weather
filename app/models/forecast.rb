@@ -39,6 +39,10 @@ class Forecast
     country[:short_name]
   end
 
+  def summary
+    forecast[:hourly][:summary]
+  end
+
 private
 
   def google_geocode_service
