@@ -6,6 +6,7 @@ class ForecastSerializer
   attributes :city,
              :state,
              :country,
+             :summary,
              :current,
              :hourly,
              :daily
