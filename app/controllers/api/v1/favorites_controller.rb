@@ -27,7 +27,7 @@ class Api::V1::FavoritesController < ApplicationController
   def destroy
     favorite = Favorite.find_by(id: params[:id])
     if current_user && favorite
-      favorite.update_attributes(active: false)
+      favorite.delete
       render json: FavoritesSerializer.new(current_user.favorites.active), 
         status: favorites? ? 200 : 204
     elsif favorite && params[:api_key] #invalid user
