@@ -1,7 +1,9 @@
 class Api::V1::FavoritesController < ApplicationController
 
   def create
-    if current_user && params[:location]
+    if current_user && params[:location] && Favorite.find_by(location: params[:location])
+      render json: { :error => "Favorite already exists for this location."}, status: 409
+    elsif current_user && params[:location]
       favorite = current_user.favorites.create(location: params[:location])
       render json: FavoritesSerializer.new(favorite), status: 200
     elsif params[:location] && params[:api_key] 
