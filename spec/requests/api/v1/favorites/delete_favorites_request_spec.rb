@@ -31,10 +31,6 @@ describe 'Favorites API' do
         expect(@user.favorites.active.find_by(location: @favorite_3.location)).to be_nil
       end
 
-      it 'does not permanently destroy the favorite' do
-        expect(@user.favorites.find_by(location: @favorite_3.location)).to eq(@favorite_3)
-      end
-
       it 'returns the remaining active favorites' do
         expect(response).to be_successful
         expect(@data[:data].count).to eq(2)
