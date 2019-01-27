@@ -51,6 +51,29 @@ describe 'Favorites API' do
       end
     end
 
+    describe 'duplicate favorite' do
+
+      before(:each) do
+        @user = create(:user)
+        @favorite = @user.favorites.create(location: "Denver, CO")
+        params = {
+                    "location": "Denver, CO",
+                    "api_key": @user.api_key
+                  }
+        post "/api/v1/favorites", params: params
+        @data = JSON.parse(response.body, symbolize_names: true)
+      end
+
+      it 'does not create a duplicate favorite' do
+        expect(@user.favorites).to eq([@favorite])
+      end
+
+      it 'returns an error' do
+        expect(response.status).to eq(409)
+        expect(@data[:error]).to eq("Favorite already exists for this location.")
+      end
+    end
+
     describe 'without an api key' do
 
       before(:each) do
