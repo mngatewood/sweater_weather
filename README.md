@@ -2,6 +2,10 @@
 
 Sweater Weather is a micro-service API that combines services from Dark Sky API, Google Geocoding API, and Giphy API. The server submits a location to Google Geocoding API, which returns latitude and longitude coordinates for the location.  These coordinates are then submitted to the Dark Sky API, which returns current and forecasted weather information for the location.  The current weather summary is also submitted to the Giphy API, which returns a random GIF related to the current weather.  A future feature will also provide a background photo for the selected location.
 
+The production API is hosted by Heroku at the following link:
+
+https://mngatewood-weather-be.herokuapp.com/
+
 ## Versions
 Ruby 2.4.1,
 Rails 5.2.2
@@ -47,10 +51,18 @@ Rails 5.2.2
   - ``bundle exec figaro install``
   - Store API keys in config/application.yml
     - giphy_key: <api_key>
+    
+## Endpoints
 
-    ## Testing
-    MiniTest has been excluded from this app, opting for RSpec instead.
+- api/v1/forecast
+- api/v1/gifs
+- api/v1/users
+- api/v1/sessions
+- api/v1/favorites
 
-    Run RSpec via ``bundle exec rspec``
+## Testing
+  MiniTest has been excluded from this app, opting for RSpec instead.
 
-    Test data is mocked with [WebMock](https://github.com/bblimke/webmock) and [VCR](https://github.com/vcr/vcr)
+  Run RSpec via ``bundle exec rspec``
+
+  Test data is mocked with [WebMock](https://github.com/bblimke/webmock) and [VCR](https://github.com/vcr/vcr)
